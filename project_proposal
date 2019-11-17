@@ -1,0 +1,51 @@
+# **College Insights**
+###### Codename: College Major Guide
+#### The Team: Xinyu Cao, Fareed Mabrouk, Skye Tian, Quinn Wang
+#### Affiliation:
+Info-201: Technical Foundations of Informatics The Information School
+
+University of Washington
+
+Autumn 2019
+### **1.0 Introduction**
+#### 1.1 *Problem Situation*
+Our problem space might affect students looking to attend college, as well as the colleges who will be receiving these students. The ethical implications of our model can include a negative feedback loop of university rankings as described by O’Neil, and drive students away from colleges that don’t have the raw statistics to place it high on the rankings despite having other redeeming qualities. As a group, we understand the difficulties that came with deciding a major, and realize that there are a multitude of factors that could influence this decision. This is why we aim to simplify these factors in an understandable format that easily lets students compare these factors between colleges.
+#### 1.2 *What is the problem?*
+Incoming freshmen into higher education are uninformed on the benefits and drawbacks of certain majors, and in order to make an informed decision on what they wish to pursue, we believe they should have the facts. This may include student completion rates, satisfaction of higher education by location, and debt/earnings post-degree. A lack of insight into the future of major competitiveness and availability is also an issue that needs to be addressed, so our group aims to students who have difficulties deciding their majors.
+#### 1.3 *Why does it matter?*
+It matters because colleges usually have hundreds of majors available for students. It is really hard for college students and their parents to decide what they want to major in while considering future situations of the major. If a student chooses to major in a field he interests in but ignores the fact that it has a low employment rate, it is not an ideal major for him. Moreover, if the student is forced to choose a major just because the salary afterward is high, college life could be painful for the student. In sum, our project will provide the most up-to-date and helpful information for college students to search for their ideal major.
+#### 1.4 *How will it be addressed?*
+This project collects data from various resources and integrates them into an overall outlook, presenting an inclusive trend of the current most popular majors in bachelor’s degrees (ranking by popularity). It provides a key indicator and guideline for incoming college freshmen to choose a college major based on the major’s prospects, including employment rate of majors and annual salary of alumni graduated from specific majors, across different states and period. Ultimately, the project will offer a clear direction for incoming freshmen on which way they should go further.
+### **2.0 Research Questions**
+1. What top ten majors are the in the most demand for the current job market across states?
+2. How are those top ten majors related to the average salary and employment rate?
+
+### **3.0 Possible Data Sets**
+1. The name of the first data set is “Salary increase by major” and contains 8 attributes as well as 59 observations. The dataset was obtained from the Wall Street Journal, it lists 59 undergraduate majors and starting median salaries, mid-career median salary, Percent change from Starting to Mid-Career Salary, and Mid-Career 10 to 90th Percentile Salary for each major. Link: [Salary Increase by Major Dataset](https://www.kaggle.com/wsj/college-salaries/version/1#degrees-that-pay-back.csv)
+2. The name of the second data set is “Bachelor's degrees conferred by postsecondary institutions, by field of study and state or jurisdiction: 2015-16” and contains 12 attributes as well as 50 observations. The dataset was obtained from the national center for education statistics, it contains ten main categories of college majors in the U.S. and how many students are in each of the ten majors for 50 states. By looking at this dataset, we can filter out the most popular category of major in each state. Link: [Bachelor's Degress Conferred by Postsecondary Institutions Dataset](https://nces.ed.gov/programs/digest/d17/tables/dt17_319.30.asp)
+
+### **4.0 Information Visualizations**
+![Location quotient of petroleum engineers by state](/data/proposal_image_1.png)
+1. A map with our “most popular majors though states” might be a good option for us to visualize, like the graph above. In this graph, the top 3 popular major categories though states would be presented. The shade of color on the map should be based on the salaries or employment rate in different states.(Source: United States Department of Labor)
+
+![Histogram of median annual earnings by subject](/data/proposal_image_2.png)
+2. A histogram can help us display salaries among different majors. There would be two variables, majors and the amount of salaries. This way of visualization helps us to compare the difference of salary among majors. (Source: BBC News)
+
+### **5.0 Team Coordination**
+1. Team Meeting Time: Wednesday 3:30pm - 6:00pm
+2. Individual Roles:
+  - Xinyu Cao: Finding data resources
+  - Quinn Wang: User-interface design
+  - Fareed Mabrouk: Data aggregation and exploration
+3. The meeting time weekly would be Wednesday afternoon or schedule in advance. Our group will communicate through the Microsoft team chat to discuss our projects.
+4. We’d like to give our feedback in our group chat or face to face. We consider it is a more efficient way of communication. Optionally, we could use Microsoft team to communicate and solve the problem of work breakdowns if we have time conflicts meeting in person.
+
+### **6.0 Questions for Teaching Team**
+Is it okay if we make some adjustments about this project that will not completely math the project proposal later on?
+
+### **7.0 References**
+Britton, Dr Jack. “The Degrees That Make You Rich... and the Ones That Don't.” BBC News, BBC, 17 Nov. 2017, https://www.bbc.com/news/education-41693230.
+
+“Digest of Education Statistics, 2017.” National Center for Education Statistics (NCES) Home Page, a Part of the U.S. Department of Education, https://nces.ed.gov/programs/digest/d17/tables/dt17_319.30.asp.
+
+Journal, The Wall Street. “Where It Pays to Attend College.” Kaggle, 29 Apr. 2017, https://www.kaggle.com/wsj/college-salaries/version/1#degrees-that-pay-back.csv.
