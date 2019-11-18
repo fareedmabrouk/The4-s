@@ -63,7 +63,7 @@ tech <- tabPanel(
     )
 )
 visualizations <- tabPanel(
-    "Our visualizations1",
+    "Our visualizations",
     sidebarLayout(
         sidebarPanel(
             selectInput(
@@ -109,9 +109,12 @@ about_us <- tabPanel(
 
 server <- function(input, output) {
     output$median_sal_plot <- renderPlot({
+        filter <- m_sal %>% filter(
+            Undergraduate.Major %in% input$m_choices
+        )
         x <- input$m_choices
-        y <- m_sal$Mid.Career.Median.Salary[m_sal$Undergraduate.Major == input$m_choices]
-        ggplot(data = m_sal) +
+        y <- m_sal$Mid.Career.Median.Salary
+        ggplot(data = filter) +
             geom_col(mapping = aes(
                 x = input$m_choices,
                 y = Mid.Career.Median.Salary
