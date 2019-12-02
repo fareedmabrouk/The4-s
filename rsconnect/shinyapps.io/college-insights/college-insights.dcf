@@ -1,0 +1,10 @@
+name: college-insights
+title:
+username:
+account: college-insights
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1504743
+bundleId: 2605940
+url: https://college-insights.shinyapps.io/college-insights/
+when: 1574306743.91519
