@@ -8,7 +8,7 @@ ui <- function(request) {
       "College Major Insights",
       intro,
       salary_viz,
-      map_viz,
+      salary_by_region_viz,
       conclusion,
       tech,
       barchart_viz,
@@ -112,15 +112,62 @@ college_comparison <- tabPanel(
     )
   )
 )
-map_viz <- tabPanel(
-  "Majors Mapped across the U.S.",
-  fluidPage(
-    h1("Map Visualization"),
-    p("Here is where we will put our interactive visualization where
-           users can select a certain major they're interested and the map
-           will highlight popular areas for those majors. This will allow
-           the user to make an informed decision on where they might feel
-           the strongest sense of community based on major choice.")
+salary_by_region_viz <- tabPanel(
+  "Salary by Regions",
+  titlePanel("Salary based on region"),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput(
+        inputId = "region",
+        label = ("Select region for starting median salary"),
+        choices = data$region,
+        multiple = T,
+        selected = "California"
+      ), selectInput(
+        inputId = "region1",
+        label = ("select region for mid career 10th Percentile salary"),
+        choices = data$region,
+        multiple = T,
+        selected = "California"
+      ),
+      selectInput(
+        inputId = "region2",
+        label = ("select region for mid career 25th Percentile salary"),
+        choices = data$region,
+        multiple = T,
+        selected = "California"
+      ),
+      selectInput(
+        inputId = "region3",
+        label = ("select region for mid-career median salary"),
+        choices = data$region,
+        multiple = T,
+        selected = "California"
+      ),
+      selectInput(
+        inputId = "region4",
+        label = ("select region for mid career 75th Percentile salary"),
+        choices = data$region,
+        multiple = T,
+        selected = "California"
+      ),
+      selectInput(
+        inputId = "region5",
+        label = ("select region for mid career 90th Percentile salary"),
+        choices = data$region,
+        multiple = T,
+        selected = "California"
+      )
+    ),
+    
+    mainPanel(
+      plotOutput(outputId = "region_info"),
+      plotOutput(outputId = "region_info1"),
+      plotOutput(outputId = "region_info2"),
+      plotOutput(outputId = "region_info3"),
+      plotOutput(outputId = "region_info4"),
+      plotOutput(outputId = "region_info5")
+    ),
   )
 )
 barchart_viz <- tabPanel(
