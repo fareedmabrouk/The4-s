@@ -24,7 +24,30 @@ server <- function(input, output) {
       )
   })
   
+  # the table server
   output$major_choice <- {(
     renderText(input$m_choices)
   )}
+  first_data <- reactive({
+    m_sal %>% filter(Undergraduate.Major == input$first_major_select) %>% 
+      select(Starting.Median.Salary, Mid.Career.Median.Salary)
+  })
+  second_data <- reactive({
+    m_sal %>% filter(Undergraduate.Major == input$second_major_select) %>% 
+      select(Starting.Median.Salary, Mid.Career.Median.Salary)
+  })
+  third_data <- reactive({
+    m_sal %>% filter(Undergraduate.Major == input$third_major_select) %>% 
+      select(Starting.Median.Salary, Mid.Career.Median.Salary)
+  })
+  
+  output$first_major_list <- renderTable({
+    first_data()
+  })
+  output$second_major_list <- renderTable({
+    second_data()
+  })
+  output$third_major_list <- renderTable({
+    third_data()
+  })
 }

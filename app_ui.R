@@ -135,7 +135,28 @@ table_viz <- tabPanel(
   "Salary by Table",
   p("Here is where we will put our salary table comparison that lets users
        easily compare salary projections for majors they're interested in
-       exploring.")
+       exploring."),
+  
+  sidebarPanel(
+    selectInput("first_major_select",
+                label = h3("Select First Major"),
+                choices = m_sal$Undergraduate.Major
+    ),
+    selectInput("second_major_select",
+                label = h3("Select Second Major"),
+                choices = m_sal$Undergraduate.Major
+    ),
+    selectInput("third_major_select",
+                label = h3("Select Third Major"),
+                choices = m_sal$Undergraduate.Major
+    ),
+  ),
+  mainPanel(
+    h3("Major Comparison Chart"),
+    tableOutput("first_major_list"),
+    tableOutput("second_major_list"),
+    tableOutput("third_major_list")
+  )
 )
 
 conclusion <- tabPanel(
