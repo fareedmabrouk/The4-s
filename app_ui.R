@@ -7,12 +7,13 @@ ui <- function(request) {
     navbarPage(
       "College Major Insights",
       intro,
+      table_viz,
       salary_viz,
       salary_by_region_viz,
+      college_type_viz,
+      college_comparison,
       conclusion,
       tech,
-      barchart_viz,
-      table_viz,
       about_us
     )
   )
@@ -96,19 +97,22 @@ salary_viz <- tabPanel(
 )
 
 college_comparison <- tabPanel(
-  "See how the colleges you're considering stack up!",
+  "Compare Colleges",
   sidebarLayout(
     sidebarPanel(
       selectInput(
-        inputId = "m_choices",
-        label = "Please select the majors you want to explore",
-        choices = m_sal$Undergraduate.Major,
+        inputId = "c_picks",
+        label = "Please select the colleges you want to compare:",
+        choices = colleges$name,
         multiple = T
       )
     ),
     mainPanel(
-      plotOutput(outputId = "median_sal_plot"),
-      textOutput(outputId = "major_choice")
+      h1("See how the colleges you're considering stack up!"),
+      plotOutput(outputId = "ret_rate"),
+      plotOutput(outputId = "in_tuition"),
+      plotOutput(outputId = "out_tuition"),
+      plotOutput(outputId = "grad_rate")
     )
   )
 )
@@ -123,43 +127,9 @@ salary_by_region_viz <- tabPanel(
         choices = data$region,
         multiple = T,
         selected = "California"
-      ), selectInput(
-        inputId = "region1",
-        label = ("select region for mid career 10th Percentile salary"),
-        choices = data$region,
-        multiple = T,
-        selected = "California"
-      ),
-      selectInput(
-        inputId = "region2",
-        label = ("select region for mid career 25th Percentile salary"),
-        choices = data$region,
-        multiple = T,
-        selected = "California"
-      ),
-      selectInput(
-        inputId = "region3",
-        label = ("select region for mid-career median salary"),
-        choices = data$region,
-        multiple = T,
-        selected = "California"
-      ),
-      selectInput(
-        inputId = "region4",
-        label = ("select region for mid career 75th Percentile salary"),
-        choices = data$region,
-        multiple = T,
-        selected = "California"
-      ),
-      selectInput(
-        inputId = "region5",
-        label = ("select region for mid career 90th Percentile salary"),
-        choices = data$region,
-        multiple = T,
-        selected = "California"
       )
     ),
-    
+
     mainPanel(
       plotOutput(outputId = "region_info"),
       plotOutput(outputId = "region_info1"),
@@ -170,20 +140,77 @@ salary_by_region_viz <- tabPanel(
     ),
   )
 )
-barchart_viz <- tabPanel(
+
+# The bar graphs and boxplots of salaries based on different school types.
+college_type_viz <- tabPanel(
   "College-Type Comparison",
   fluidPage(
-    h1("Bar-chart Comparison Graph"),
-    p("Here is where we will we put a graph that compares salary based
-           on the college types.")
+    h1("Bar-charts and Boxplots Comparison Graph"),
+    boxplot_page <- tabPanel(
+      # Give the title of the page.
+      "Salaries based on college types",
+      # Create the sidebar layout on this page.
+      sidebarLayout(
+        sidebarPanel(
+          h3("The impacts brought by different school 
+                   types on the future salaries."),
+          p("Click the button below to check out the median of 
+                  Starting salaries bar chart."),
+          p(),
+          actionButton(
+            inputId = "plot1",
+            label = "Starting salary bar chart"
+          ),
+          p(),
+          p("Click the button below to check out the median of 
+                  mid-career salaries bar chart."),
+          p(),
+          actionButton(
+            inputId = "plot2",
+            label = "Mid-career salary bar chart"
+          ),
+          p(),
+          h4("Click buttons below for boxplots, 
+                   to see the distributions."),
+          p("(Scroll the page might be needed for the whole graph)"),
+          p(),
+          p("Click the button below to check out 
+                  the starting salaries boxplot."),
+          p(),
+          actionButton(
+            inputId = "plot3",
+            label = "Starting salary boxplot"
+          ),
+          p(),
+          p("Click the button below to check out the mid-career 
+                  salaries boxplot."),
+          p(),
+          actionButton(
+            inputId = "plot4",
+            label = "Mid-career salary boxplot"
+          ),
+          
+        ),
+        # Create the main panel of two bar plots (one base on gender, 
+        #the other one by party) of the representatives of the 
+        # state selected by users in the side bar(selectInput).
+        mainPanel(
+          plotOutput(outputId = "starting_bar"),
+          plotOutput(outputId = "mid_bar"),
+          plotOutput(outputId = "starting_boxplot"),
+          plotOutput(outputId = "mid_career_boxplot")
+        )
+      )
+    )
   )
 )
+
 table_viz <- tabPanel(
   "Salary by Table",
   p("Here is where we will put our salary table comparison that lets users
        easily compare salary projections for majors they're interested in
        exploring."),
-  
+
   sidebarPanel(
     selectInput("first_major_select",
                 label = h3("Select First Major"),
@@ -218,7 +245,7 @@ conclusion <- tabPanel(
 # about_fareed <- fixedRow(
 #     column(6, img(src="fareed_picture.png", height="25%", width="25%")),
 #     column(6, "My name is Fareed and I love UW!")
-# )      
+# )
 
 about_us <- tabPanel(
   "About Us",
