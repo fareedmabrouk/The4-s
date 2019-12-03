@@ -9,6 +9,7 @@ ui <- function(request) {
       intro,
       salary_viz,
       college_comparison,
+      salary_by_region_viz,
       map_viz,
       conclusion,
       tech,
@@ -116,15 +117,62 @@ college_comparison <- tabPanel(
     )
   )
 )
-map_viz <- tabPanel(
-  "Majors Mapped across the U.S.",
-  fluidPage(
-    h1("Map Visualization"),
-    p("Here is where we will put our interactive visualization where
-           users can select a certain major they're interested and the map
-           will highlight popular areas for those majors. This will allow
-           the user to make an informed decision on where they might feel
-           the strongest sense of community based on major choice.")
+salary_by_region_viz <- tabPanel(
+  "Salary by Regions",
+  titlePanel("Salary based on region"),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput(
+        inputId = "region",
+        label = ("Select region for starting median salary"),
+        choices = data$region,
+        multiple = T,
+        selected = "California"
+      ), selectInput(
+        inputId = "region1",
+        label = ("select region for mid career 10th Percentile salary"),
+        choices = data$region,
+        multiple = T,
+        selected = "California"
+      ),
+      selectInput(
+        inputId = "region2",
+        label = ("select region for mid career 25th Percentile salary"),
+        choices = data$region,
+        multiple = T,
+        selected = "California"
+      ),
+      selectInput(
+        inputId = "region3",
+        label = ("select region for mid-career median salary"),
+        choices = data$region,
+        multiple = T,
+        selected = "California"
+      ),
+      selectInput(
+        inputId = "region4",
+        label = ("select region for mid career 75th Percentile salary"),
+        choices = data$region,
+        multiple = T,
+        selected = "California"
+      ),
+      selectInput(
+        inputId = "region5",
+        label = ("select region for mid career 90th Percentile salary"),
+        choices = data$region,
+        multiple = T,
+        selected = "California"
+      )
+    ),
+
+    mainPanel(
+      plotOutput(outputId = "region_info"),
+      plotOutput(outputId = "region_info1"),
+      plotOutput(outputId = "region_info2"),
+      plotOutput(outputId = "region_info3"),
+      plotOutput(outputId = "region_info4"),
+      plotOutput(outputId = "region_info5")
+    ),
   )
 )
 barchart_viz <- tabPanel(
@@ -140,7 +188,7 @@ table_viz <- tabPanel(
   p("Here is where we will put our salary table comparison that lets users
        easily compare salary projections for majors they're interested in
        exploring."),
-  
+
   sidebarPanel(
     selectInput("first_major_select",
                 label = h3("Select First Major"),
@@ -175,7 +223,7 @@ conclusion <- tabPanel(
 # about_fareed <- fixedRow(
 #     column(6, img(src="fareed_picture.png", height="25%", width="25%")),
 #     column(6, "My name is Fareed and I love UW!")
-# )      
+# )
 
 about_us <- tabPanel(
   "About Us",
