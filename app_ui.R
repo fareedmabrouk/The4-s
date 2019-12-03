@@ -9,9 +9,14 @@ ui <- function(request) {
       intro,
       table_viz,
       salary_viz,
+      college_comparison,
       salary_by_region_viz,
+<<<<<<< HEAD
       college_type_viz,
       college_comparison,
+=======
+      map_viz,
+>>>>>>> 564f7b8267cadf3d2f7976857b7ad971611ca3d6
       conclusion,
       tech,
       about_us

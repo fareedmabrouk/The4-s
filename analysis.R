@@ -2,8 +2,11 @@
 library(readr)
 library(tidyr)
 library(dplyr)
+<<<<<<< HEAD
 m_sal <- read.csv("./data/degrees-that-pay-back.csv", stringsAsFactors = FALSE)
 m_sal$Mid.Career.Median.Salary <- parse_number(m_sal$Mid.Career.Median.Salary)
+=======
+>>>>>>> 564f7b8267cadf3d2f7976857b7ad971611ca3d6
 
 colleges <- read.csv("./data/college-data.csv", stringsAsFactors = FALSE)
 colleges <- colleges[1:8]
