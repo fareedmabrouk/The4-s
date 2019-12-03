@@ -8,6 +8,7 @@ ui <- function(request) {
       "College Major Insights",
       intro,
       salary_viz,
+      college_comparison,
       map_viz,
       conclusion,
       tech,
@@ -96,19 +97,22 @@ salary_viz <- tabPanel(
 )
 
 college_comparison <- tabPanel(
-  "See how the colleges you're considering stack up!",
+  "Compare Colleges",
   sidebarLayout(
     sidebarPanel(
       selectInput(
-        inputId = "m_choices",
-        label = "Please select the majors you want to explore",
-        choices = m_sal$Undergraduate.Major,
+        inputId = "c_picks",
+        label = "Please select the colleges you want to compare:",
+        choices = colleges$name,
         multiple = T
       )
     ),
     mainPanel(
-      plotOutput(outputId = "median_sal_plot"),
-      textOutput(outputId = "major_choice")
+      h1("See how the colleges you're considering stack up!"),
+      plotOutput(outputId = "ret_rate"),
+      plotOutput(outputId = "in_tuition"),
+      plotOutput(outputId = "out_tuition"),
+      plotOutput(outputId = "grad_rate")
     )
   )
 )

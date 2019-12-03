@@ -4,15 +4,22 @@ library(eeptools)
 source("analysis.R")
 
 server <- function(input, output) {
-  # output$ret_rate <- renderPlot({
-  #   filter <- colleges %>% filter(name %in% input$c_picks)
-  # })
+  output$ret_rate <- renderPlot({
+    retention_rate(input$c_picks)
+  })
+  output$out_tuition <- renderPlot({
+    out_state_tuition(input$c_picks)
+  })
+  output$in_tuition <- renderPlot({
+    in_state_tuition(input$c_picks)
+  })
+  output$grad_rate <- renderPlot({
+    graduation_rate(input$c_picks)
+  })
   output$median_sal_plot <- renderPlot({
     filter <- m_sal %>% filter(
       Undergraduate.Major %in% input$m_choices
     )
-    x <- input$m_choices
-    y <- m_sal$Mid.Career.Median.Salary
     ggplot(data = filter) +
       geom_col(mapping = aes(
         x = input$m_choices,
