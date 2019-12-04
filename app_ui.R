@@ -68,8 +68,8 @@ intro <- tabPanel(
 
 college_comparison <- tabPanel(
   "Compare Colleges",
-  strong(" Have plenty of offers but can not make up your mind?", br(), "Select colleges below to compare the tuitions,
-    rentation rate, and graduate rate.", br(), "These informations might be helpful for your college choice.", br(), br()),
+  strong(" Have plenty of offers but can't make up your mind?", br(), "Select colleges below to compare the tuition,
+    rentention, and graduate rates.", br(), "This information might be helpful for your college choice.", br(), br()),
   sidebarLayout(
     sidebarPanel(
       selectInput(
@@ -81,9 +81,13 @@ college_comparison <- tabPanel(
     ),
     mainPanel(
       h1("See how the colleges you're considering stack up!"),
+      h3("Compare Retention Rate"),
       plotOutput(outputId = "ret_rate"),
+      h3("Compare In-state Tuition Prices"),
       plotOutput(outputId = "in_tuition"),
+      h3("Compare Out-of-state Tuition Prices"),
       plotOutput(outputId = "out_tuition"),
+      h3("Compare Graduation Rates"),
       plotOutput(outputId = "grad_rate")
     )
   )
