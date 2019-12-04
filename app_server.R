@@ -16,20 +16,7 @@ server <- function(input, output) {
   output$grad_rate <- renderPlot({
     graduation_rate(input$c_picks)
   })
-  output$median_sal_plot <- renderPlot({
-    filter <- m_sal %>% filter(
-      Undergraduate.Major %in% input$m_choices
-    )
-    ggplot(data = filter) +
-      geom_col(mapping = aes(
-        x = input$m_choices,
-        y = Mid.Career.Median.Salary
-      )) + labs(
-        y = "Major",
-        x = "Salary",
-        title = "Salary of Each Selected Major"
-      )
-  })
+
   
   # the table server
   output$major_choice <- {(
@@ -67,10 +54,10 @@ server <- function(input, output) {
     y <- data$start_med_salary
     
     ggplot(data = ploting, aes(x = input$region, y = sum)) + 
-      geom_bar(stat = "identity", fill = "steelblue") +
+      geom_bar(stat = "identity", fill = "#f5985b") +
       xlab("region") + 
       ylab("$(In dollar)") + 
-      ggtitle("Starting_median_salary") +
+      ggtitle("Starting Median Salary") +
       geom_text(aes(label = sum), vjust = 1.6, color = "white", size = 3)
   })
   output$region_info1 <- renderPlot({
@@ -81,10 +68,10 @@ server <- function(input, output) {
     y <- data$mid_career_10th
     
     ggplot(data = plot1, aes(x = input$region, y = sum)) + 
-      geom_bar(stat = "identity", fill = "steelblue") +
+      geom_bar(stat = "identity", fill = "#4abdac") +
       xlab("region") + 
       ylab("$(In dollar)") + 
-      ggtitle("mid_career_10th_Percentile_salary") +
+      ggtitle("Mid Career 10th Percentile Salary") +
       geom_text(aes(label = sum), vjust = 1.6, color = "white", size = 3)
   })
   output$region_info2 <- renderPlot({
@@ -94,10 +81,10 @@ server <- function(input, output) {
     x <- input$region2
     y <- data$mid_career_25th
     ggplot(data = plot2, aes(x = input$region, y = sum)) + 
-      geom_bar(stat = "identity", fill = "steelblue") +
+      geom_bar(stat = "identity", fill = "#f5985b") +
       xlab("region") + 
       ylab("$(In dollar)") + 
-      ggtitle("mid_career_25th_Percentile_salary") +
+      ggtitle("Mid Career 25th Percentile Salary") +
       geom_text(aes(label = sum), vjust = 1.6, color = "white", size = 3)
   })
   output$region_info3 <- renderPlot({
@@ -108,10 +95,10 @@ server <- function(input, output) {
     y <- data$mid_career_salary
     
     ggplot(data = plot3, aes(x = input$region, y = sum)) + 
-      geom_bar(stat = "identity", fill = "steelblue") +
+      geom_bar(stat = "identity", fill = "#4abdac") +
       xlab("region") + 
       ylab("$(In dollar)") + 
-      ggtitle("mid_career_median_salary") +
+      ggtitle("Mid Career Median Salary") +
       geom_text(aes(label = sum), vjust = 1.6, color = "white", size = 3)
   })
   output$region_info4 <- renderPlot({
@@ -122,10 +109,10 @@ server <- function(input, output) {
     y <- data$mid_career_75th
     
     ggplot(data = plot4, aes(x = input$region, y = sum)) + 
-      geom_bar(stat = "identity", fill = "steelblue") +
+      geom_bar(stat = "identity", fill = "#f5985b") +
       xlab("region") + 
       ylab("$(In dollar)") + 
-      ggtitle("mid_career_75th_Percentile_salary") +
+      ggtitle("Mid Career 75th Percentile Salary") +
       geom_text(aes(label = sum), vjust = 1.6, color = "white", size = 3)
   })
   output$region_info5 <- renderPlot({
@@ -136,10 +123,10 @@ server <- function(input, output) {
     y <- data$mid_career_90th
     
     ggplot(data = plot5, aes(x = input$region, y = sum)) + 
-      geom_bar(stat = "identity", fill = "steelblue") +
+      geom_bar(stat = "identity", fill = "#4abdac") +
       xlab("region") + 
       ylab("$(In dollar)") +
-      ggtitle("mid_career_90th_Percentile_salary") +
+      ggtitle("Mid Career 90th Percentile Salary") +
       geom_text(aes(label = sum), vjust = 1.6, color = "white", size = 3)
   })
   
@@ -148,7 +135,7 @@ server <- function(input, output) {
   starting1 <- eventReactive(input$plot1, {
     ggplot(data = median_summary, 
            aes(x = school_type, y = starting_salary)) +
-      geom_bar(stat = "identity", fill = "#5284ba") + xlab("School Type") +
+      geom_bar(stat = "identity", fill = "#f7b733") + xlab("School Type") +
       ylab("Median of Starting  Salaries") +
       ggtitle("The bar graph of starting salaries of different school types") +
       geom_text(aes(label = starting_salary), vjust = 1.6, color = "white", size = 3)
@@ -161,7 +148,7 @@ server <- function(input, output) {
   mid1 <- eventReactive(input$plot2, {
     ggplot(data = median_summary, 
            aes(x = school_type, y = mid_career_salary)) +
-      geom_bar(stat = "identity", fill = "#ba5552") + xlab("School Type") +
+      geom_bar(stat = "identity", fill = "#DF744A") + xlab("School Type") +
       ylab("Median of mid-career salaries of different school types") +
       ggtitle("The bar graph of Mid-career Salaries") +
       geom_text(aes(label = mid_career_salary), vjust = 1.6, color = "white", size = 3)
@@ -174,7 +161,7 @@ server <- function(input, output) {
   starting2 <- eventReactive(input$plot3, {
     ggplot(df, aes(x = School.Type, y = Starting.Median.Salary)) +
       ggtitle("The boxplot of starting salaries") +
-      geom_boxplot() +
+      geom_boxplot(fill = "#f7b733", color = "darkorange") +
       xlab("School Type") +
       ylab("Median of starting Salaries")
   })
@@ -186,7 +173,7 @@ server <- function(input, output) {
   mid2 <- eventReactive(input$plot4, {
     ggplot(df, aes(x = School.Type, y = Mid.Career.Median.Salary)) +
       ggtitle("The box plot of mid-career salaries") +
-      geom_boxplot() +
+      geom_boxplot(fill = "#f5985b", color = "darkorange") +
       xlab("School Type") +
       ylab("Median of mid-career Salaries")
   })

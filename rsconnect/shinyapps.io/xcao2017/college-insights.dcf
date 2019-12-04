@@ -1,0 +1,13 @@
+name: college-insights
+title: college-insights
+username:
+account: xcao2017
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1558865
+bundleId: 2638761
+url: https://xcao2017.shinyapps.io/college-insights/
+when: 1575432002.18711
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .DS_Store_BACKUP_83083|.DS_Store_BACKUP_83170|.DS_Store_BASE_83083|.DS_Store_BASE_83170|.DS_Store_LOCAL_83083|.DS_Store_LOCAL_83170|.DS_Store_REMOTE_83083|.DS_Store_REMOTE_83170|.DS_Store.swp|www/bootstrap.min.css|www/fareed_picture.png|www/sketch.css

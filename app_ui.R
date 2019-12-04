@@ -1,24 +1,19 @@
 source("analysis.R")
 library(shiny)
 library("ggplot2")
-
+library("shinythemes")
 ui <- function(request) {
   fluidPage(
     navbarPage(
+      theme = shinytheme("united"),
       "College Major Insights",
       intro,
       table_viz,
-      salary_viz,
       college_comparison,
       salary_by_region_viz,
-<<<<<<< HEAD
       college_type_viz,
-      college_comparison,
-=======
-      map_viz,
->>>>>>> 564f7b8267cadf3d2f7976857b7ad971611ca3d6
+
       conclusion,
-      tech,
       about_us
     )
   )
@@ -68,48 +63,25 @@ intro <- tabPanel(
       p("What are the most popular majors in each state?")
     ))
   ),
-  h3("Click here to check out the project proposal!", a("Link", href="https://github.com/fareedmabrouk/college-insights/wiki/Project-Proposal-2"))
+  h3("Click here to check out the project proposal!", a("Link", href = "https://github.com/fareedmabrouk/college-insights/wiki/Project-Proposal-2"))
 )
 
-tech <- tabPanel(
-  "Behind the Tech",
-  fluidPage(
-    h1("Behind the Scenes"),
-    h3("Data Visualization"),
-    p("To create our graphs, we used..."),
-    h3("Visuals"),
-    p("To construct the UI for our site, Shiny was...")
-  )
-)
 
-salary_viz <- tabPanel(
-  "Salary Graph",
-  h1("This graph compares the mid-career median Salary for your selected majors!"),
-  sidebarLayout(
-    sidebarPanel(
-      selectInput(
-        inputId = "m_choices",
-        label = "Please select the majors you want to explore",
-        choices = m_sal$Undergraduate.Major,
-        multiple = T
-      )
-    ),
-    mainPanel(
-      plotOutput(outputId = "median_sal_plot"),
-      textOutput(outputId = "major_choice")
-    )
-  )
-)
+
+
 
 college_comparison <- tabPanel(
   "Compare Colleges",
+  strong(" Have plenty of offers but can not make up your mind?", br(), "Select colleges below to compare the tuitions,
+    rentation rate, and graduate rate.", br(), "These informations might be helpful for your college choice.", br(), br()),
   sidebarLayout(
     sidebarPanel(
       selectInput(
         inputId = "c_picks",
         label = "Please select the colleges you want to compare:",
         choices = colleges$name,
-        multiple = T
+        multiple = T,
+        selected = "University of Washington-Seattle Campus"
       )
     ),
     mainPanel(
@@ -123,6 +95,11 @@ college_comparison <- tabPanel(
 )
 salary_by_region_viz <- tabPanel(
   "Salary by Regions",
+  strong(
+    "Which region has better salary across US? Choose regions you'd like to compare to see the result.", br(),
+    "(Scroll the page for see more details for starting salaries in different regions, e.g. percentile)"
+  ),
+
   titlePanel("Salary based on region"),
   sidebarLayout(
     sidebarPanel(
@@ -135,6 +112,7 @@ salary_by_region_viz <- tabPanel(
       )
     ),
 
+
     mainPanel(
       plotOutput(outputId = "region_info"),
       plotOutput(outputId = "region_info1"),
@@ -142,23 +120,25 @@ salary_by_region_viz <- tabPanel(
       plotOutput(outputId = "region_info3"),
       plotOutput(outputId = "region_info4"),
       plotOutput(outputId = "region_info5")
-    ),
+    )
   )
 )
 
 # The bar graphs and boxplots of salaries based on different school types.
 college_type_viz <- tabPanel(
   "College-Type Comparison",
+  strong("Have problems with school types?"),
+  strong("Choose bar graphs or boxplots to see salaries for 
+           different college types for help."),
+  p(),
   fluidPage(
-    h1("Bar-charts and Boxplots Comparison Graph"),
     boxplot_page <- tabPanel(
       # Give the title of the page.
       "Salaries based on college types",
       # Create the sidebar layout on this page.
       sidebarLayout(
         sidebarPanel(
-          h3("The impacts brought by different school 
-                   types on the future salaries."),
+          p(),
           p("Click the button below to check out the median of 
                   Starting salaries bar chart."),
           p(),
@@ -194,10 +174,9 @@ college_type_viz <- tabPanel(
             inputId = "plot4",
             label = "Mid-career salary boxplot"
           ),
-          
         ),
-        # Create the main panel of two bar plots (one base on gender, 
-        #the other one by party) of the representatives of the 
+        # Create the main panel of two bar plots (one base on gender,
+        # the other one by party) of the representatives of the
         # state selected by users in the side bar(selectInput).
         mainPanel(
           plotOutput(outputId = "starting_bar"),
@@ -212,22 +191,22 @@ college_type_viz <- tabPanel(
 
 table_viz <- tabPanel(
   "Salary by Table",
-  p("Here is where we will put our salary table comparison that lets users
+  strong("Here is where we will put our salary table comparison that lets users
        easily compare salary projections for majors they're interested in
-       exploring."),
+       exploring.", br(), br()),
 
   sidebarPanel(
     selectInput("first_major_select",
-                label = h3("Select First Major"),
-                choices = m_sal$Undergraduate.Major
+      label = h3("Select First Major"),
+      choices = m_sal$Undergraduate.Major
     ),
     selectInput("second_major_select",
-                label = h3("Select Second Major"),
-                choices = m_sal$Undergraduate.Major
+      label = h3("Select Second Major"),
+      choices = m_sal$Undergraduate.Major
     ),
     selectInput("third_major_select",
-                label = h3("Select Third Major"),
-                choices = m_sal$Undergraduate.Major
+      label = h3("Select Third Major"),
+      choices = m_sal$Undergraduate.Major
     ),
   ),
   mainPanel(
@@ -241,22 +220,51 @@ table_viz <- tabPanel(
 conclusion <- tabPanel(
   "Conclusion",
   fluidPage(
-    h1("Our results"),
-    p("This is where we will put the insights from the results of our
-           data visualizations.")
+    h3("Conclusion for college types:"),
+    p("The result can be more clear for this part since the ivy league 
+          colleges and engineering schools always have higher salaries, 
+          both on the starting and mid career salaries."),
+    p("Also, the box plot shows that the salaries of Ivy League school 
+          graduates are more condensed, which means there are higher 
+          possibilities to get higher salary if you go to an Ivy League school."),
+    p("Engineering schools can be a good choice as well, since they have 
+          relatively high starting and mid-career salaries."),
+    h3("Conlusion for regions:"),
+    p("For salaries by regions, we found that the regions where have 
+      higher starting salaries, have higher mid-career median salaries, 
+      except in northeastern regions. It shows that, in general, 
+      the northeastern region has better salaries development, 
+      though California still has the highest median salary for mid career."),
+    p(
+      "For the midwestern region, it has the highest mid-career 90th-percentile salaries, 
+    which means there are more exceptional salaries in midwestern, more extreme high salaries.
+    If you want to have the absolute high salary, California is your better choice.", br(), br(),
+      "However, if you are looking for the relatively better salary or job development, 
+      the northeast might be more appropriate for you."
+    )
   )
 )
 
-# about_fareed <- fixedRow(
-#     column(6, img(src="fareed_picture.png", height="25%", width="25%")),
-#     column(6, "My name is Fareed and I love UW!")
-# )
+
 
 about_us <- tabPanel(
   "About Us",
   fluidPage(
     h1("Meet the Team!"),
-    p("Here is where we will put pictures of our team as well as a short
-           description of each member.")
+    strong("Xinyu Cao:"),
+p("Salaries based on regions:",br(),"analysis & data visualization selectedInput & bar graphs."),br(),br(),
+
+strong("Fareed Mabrouk:"),
+p("Salaries based on colleges:",br(),"analysis & data visualization
+SelectedInput & bar graphs."),br(),br(),
+
+strong("Skye Tian:"),
+p("Salaries based on school types:",br(),"analysis & data visualization
+Action buttons, bar graphs & box plots."), br(),br(),
+
+strong("Quinn Wang:"),
+p("Salaries based on majors:",br(),"analysis & data visualization
+SelectedInput & table.")
   )
 )
+

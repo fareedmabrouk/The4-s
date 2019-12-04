@@ -1,12 +1,11 @@
+library(ggplot2)
 # FAREED VISUALIZATIONS
 library(readr)
 library(tidyr)
 library(dplyr)
-<<<<<<< HEAD
 m_sal <- read.csv("./data/degrees-that-pay-back.csv", stringsAsFactors = FALSE)
 m_sal$Mid.Career.Median.Salary <- parse_number(m_sal$Mid.Career.Median.Salary)
-=======
->>>>>>> 564f7b8267cadf3d2f7976857b7ad971611ca3d6
+
 
 colleges <- read.csv("./data/college-data.csv", stringsAsFactors = FALSE)
 colleges <- colleges[1:8]
@@ -20,11 +19,13 @@ retention_rate <- function(input) {
     geom_col(mapping = aes(
       x = input,
       y = retention_rate
-    )) + labs(
-      y = "University",
-      x = "Retention Rate",
+    ),
+    fill = "#83AF98") + labs(
+      y = "Retention Rate",
+      x = "University",
       title = "Retention Rate of each University"
-    )
+    ) + theme(legend.position = "none")
+  
 }
 
 retention_rate <- function(input) {
@@ -33,11 +34,12 @@ retention_rate <- function(input) {
     geom_col(mapping = aes(
       x = input,
       y = retention_rate
-    )) + labs(
-      y = "University",
-      x = "Retention Rate",
+    ),
+    fill = "#83AF98") + labs(
+      y = "Retention Rate",
+      x = "University",
       title = "Retention Rate of each University"
-    )
+    ) + theme(legend.position = "none")
 }
 
 out_state_tuition <- function(input) {
@@ -46,11 +48,13 @@ out_state_tuition <- function(input) {
     geom_col(mapping = aes(
       x = input,
       y = out_of_state_tuition
-    )) + labs(
-      y = "University",
-      x = "Tuition Cost",
+    ),
+    fill = "#83AF98") + labs(
+      y = "Tuition Cost",
+      x = "University(s)",
       title = "Out of State Tuition of each University"
-    )
+    ) + theme(legend.position = "none")
+
 }
 
 in_state_tuition <- function(input) {
@@ -59,11 +63,13 @@ in_state_tuition <- function(input) {
     geom_col(mapping = aes(
       x = input,
       y = in_state_tuition
-    )) + labs(
-      y = "University",
-      x = "Tuition Cost",
+    ),
+    fill = "#83AF98") + labs(
+      y = "Tuition Cost",
+      x = "University(s)",
       title = "In-state Tuition of each University"
-    )
+    ) + theme(legend.position = "none")
+
 }
 
 graduation_rate <- function(input) {
@@ -72,11 +78,13 @@ graduation_rate <- function(input) {
     geom_col(mapping = aes(
       x = input,
       y = graduation_rate
-    )) + labs(
-      y = "University",
-      x = "Graduation Rate",
+    ),
+    fill = "#83AF98") + labs(
+      y = "Graduation Rate",
+      x = "University(s)",
       title = "Graduation Rate of each University"
-    )
+    ) + theme(legend.position = "none")
+
 }
 
 # XINYU VISUALIZATIONS
