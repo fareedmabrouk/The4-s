@@ -17,7 +17,7 @@ retention_rate <- function(input) {
   filter <- colleges %>% filter(name %in% input)
   ggplot(data = filter) +
     geom_col(mapping = aes(
-      x = input,
+      x = name,
       y = retention_rate
     ),
     fill = "#83AF98") + labs(
@@ -32,7 +32,7 @@ retention_rate <- function(input) {
   filter <- colleges %>% filter(name %in% input)
   ggplot(data = filter) +
     geom_col(mapping = aes(
-      x = input,
+      x = name,
       y = retention_rate
     ),
     fill = "#83AF98") + labs(
@@ -46,7 +46,7 @@ out_state_tuition <- function(input) {
   filter <- colleges %>% filter(name %in% input)
   ggplot(data = filter) +
     geom_col(mapping = aes(
-      x = input,
+      x = name,
       y = out_of_state_tuition
     ),
     fill = "#83AF98") + labs(
@@ -61,7 +61,7 @@ in_state_tuition <- function(input) {
   filter <- colleges %>% filter(name %in% input)
   ggplot(data = filter) +
     geom_col(mapping = aes(
-      x = input,
+      x = name,
       y = in_state_tuition
     ),
     fill = "#83AF98") + labs(
@@ -76,7 +76,7 @@ graduation_rate <- function(input) {
   filter <- colleges %>% filter(name %in% input)
   ggplot(data = filter) +
     geom_col(mapping = aes(
-      x = input,
+      x = name,
       y = graduation_rate
     ),
     fill = "#83AF98") + labs(

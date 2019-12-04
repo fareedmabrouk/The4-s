@@ -66,10 +66,6 @@ intro <- tabPanel(
   h3("Click here to check out the project proposal!", a("Link", href = "https://github.com/fareedmabrouk/college-insights/wiki/Project-Proposal-2"))
 )
 
-
-
-
-
 college_comparison <- tabPanel(
   "Compare Colleges",
   strong(" Have plenty of offers but can not make up your mind?", br(), "Select colleges below to compare the tuitions,
@@ -80,8 +76,7 @@ college_comparison <- tabPanel(
         inputId = "c_picks",
         label = "Please select the colleges you want to compare:",
         choices = colleges$name,
-        multiple = T,
-        selected = "University of Washington-Seattle Campus"
+        multiple = TRUE
       )
     ),
     mainPanel(
@@ -245,26 +240,38 @@ conclusion <- tabPanel(
   )
 )
 
+about_fareed <- fixedRow(
+  column(3, img(src="fareed_picture2.png", height="60%", width="60%")),
+  column(6, h4("My name is Fareed and I'm a sophomore at the University of Washington pursuing Informatics. In my free time I enjoy filmmaking and traveling!")),
+  column(3, "")
+)
 
+about_skye <- fixedRow(
+  column(3, img(src="skye_picture.png", height="60%", width="60%")),
+  column(6, h4("I’m Skye, a current junior economics student at UW. I’m also minor in informatics. I’m collecting all prawn dishes across the world🦐.")),
+  column(3, "")
+)
+
+about_iris <- fixedRow(
+  column(3, img(src="xinyu_picture.png", height="60%", width="60%")),
+  column(6, h4("I’m Xinyu and I’m a junior at UW. I’m currently major in economics and minor in informatics. I enjoy cooking,watching interesting shows and I hate running 🏃.")),
+  column(3, "")
+)
+
+about_quinn <- fixedRow(
+  column(3, img(src="quinn_picture.png", height="60%", width="60%")),
+  column(6, h4("I’m Quinn and currently a psych major junior. I love my dog.")),
+  column(3, "")
+)
 
 about_us <- tabPanel(
   "About Us",
   fluidPage(
     h1("Meet the Team!"),
-    strong("Xinyu Cao:"),
-p("Salaries based on regions:",br(),"analysis & data visualization selectedInput & bar graphs."),br(),br(),
-
-strong("Fareed Mabrouk:"),
-p("Salaries based on colleges:",br(),"analysis & data visualization
-SelectedInput & bar graphs."),br(),br(),
-
-strong("Skye Tian:"),
-p("Salaries based on school types:",br(),"analysis & data visualization
-Action buttons, bar graphs & box plots."), br(),br(),
-
-strong("Quinn Wang:"),
-p("Salaries based on majors:",br(),"analysis & data visualization
-SelectedInput & table.")
+    about_fareed,
+    about_skye,
+    about_iris,
+    about_quinn
   )
 )
 
