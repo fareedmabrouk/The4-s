@@ -58,9 +58,9 @@ intro <- tabPanel(
               direction for incoming freshmen on which way they should go
               further."),
       h1("Research Questions"),
+      p("How can we help students narrow down their search for possible college and major options?"),
       p("Which majors can expect the highest initial salary post-graduation?"),
-      p("From a salary standpoint, graduates from which school can expect the greatest increase in salary development?"),
-      p("What are the most popular majors in each state?")
+      p("What areas of the U.S. offer education with a high return salary-wise?")
     ))
   ),
   h3("Click here to check out the project proposal!", a("Link", href = "https://github.com/fareedmabrouk/college-insights/wiki/Project-Proposal-2"))
@@ -88,7 +88,12 @@ college_comparison <- tabPanel(
       h3("Compare Out-of-state Tuition Prices"),
       plotOutput(outputId = "out_tuition"),
       h3("Compare Graduation Rates"),
-      plotOutput(outputId = "grad_rate")
+      plotOutput(outputId = "grad_rate"),
+      h3("Analysis"),
+      p("As an incoming freshman, there are no shortage of colleges that want your application/commitment,
+         and the choices can be daunting. By providing you with an easy way to objectively compare any number
+         of colleges you are considering based on tuition, retention, and graduation data, we hope to help
+         make your decision easier and more informed.")
     )
   )
 )
@@ -118,7 +123,13 @@ salary_by_region_viz <- tabPanel(
       plotOutput(outputId = "region_info2"),
       plotOutput(outputId = "region_info3"),
       plotOutput(outputId = "region_info4"),
-      plotOutput(outputId = "region_info5")
+      plotOutput(outputId = "region_info5"),
+      h3("Analysis"),
+      p("These plots serve to help you narrow down your search geographically
+         by looking at the statistics for colleges in the region you are considering.
+         With the knowledge of starting, mid-career, and late-career salary statistics,
+         we hope to help make the region you decide to attend college in one that promotes
+         financial security.")
     )
   )
 )
